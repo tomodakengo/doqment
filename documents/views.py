@@ -9,6 +9,7 @@ from .models import Project, SectionTemplate, Document, DocumentSection, Generat
 from .forms import ProjectForm, SectionTemplateForm, DocumentForm, DocumentSectionForm
 from .default_templates import DEFAULT_TEMPLATES
 from core.utils import generate_test_document
+import json
 
 
 class ProjectListView(LoginRequiredMixin, ListView):
@@ -317,9 +318,20 @@ def document_generation_status(request, pk, task_id):
     document = get_object_or_404(Document, pk=pk, project__owner=request.user)
     task = get_object_or_404(GenerationTask, id=task_id, document=document)
     
+    # セクションテンプレート情報をJSON形式で渡す
+    section_templates = document.project.section_templates.all().order_by('order')
+    section_templates_json = json.dumps([
+        {
+            'id': template.id,
+            'title': template.title,
+            'order': template.order
+        } for template in section_templates
+    ])
+    
     return render(request, 'documents/generation_status.html', {
         'document': document,
-        'task': task
+        'task': task,
+        'section_templates': section_templates_json
     })
 
 
