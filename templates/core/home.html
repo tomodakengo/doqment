@@ -5,7 +5,7 @@
 {% block content %}
 <div class="flex flex-col items-center">
     <div class="text-center max-w-4xl mx-auto mb-16">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">ISO/IEC/IEEE 29119標準に基づいた<br>テスト文書自動生成</h1>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-zinc-900">ISO/IEC/IEEE 29119標準に基づいた<br>テスト文書自動生成</h1>
         <p class="text-xl text-zinc-600 mb-8">製品説明からテスト仕様書とテスト計画を自動生成し、<br>テスト文書作成の効率を大幅に向上させます。</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
             {% if user.is_authenticated %}
@@ -21,21 +21,21 @@
     <div class="w-full max-w-6xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-semibold mb-3">AIによる自動生成</h3>
+                <h3 class="text-xl font-semibold mb-3 text-zinc-900">AIによる自動生成</h3>
                 <p class="text-zinc-600">OpenAI APIを活用して、製品説明からISO/IEC/IEEE 29119標準に準拠したテスト文書を自動生成します。</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-semibold mb-3">カスタマイズ可能</h3>
+                <h3 class="text-xl font-semibold mb-3 text-zinc-900">カスタマイズ可能</h3>
                 <p class="text-zinc-600">セクションタイトル、コンテンツガイドライン、フォームタイプ、AIプロンプトをプロジェクトごとにカスタマイズできます。</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="text-xl font-semibold mb-3">テンプレート保存</h3>
+                <h3 class="text-xl font-semibold mb-3 text-zinc-900">テンプレート保存</h3>
                 <p class="text-zinc-600">プロジェクトごとにセクションテンプレートをカスタマイズして保存し、再利用することができます。</p>
             </div>
         </div>
 
         <div class="bg-white p-8 rounded-lg shadow-sm mb-16">
-            <h2 class="text-2xl font-bold mb-6 text-center">ISO/IEC/IEEE 29119標準とは</h2>
+            <h2 class="text-2xl font-bold mb-6 text-center text-zinc-900">ISO/IEC/IEEE 29119標準とは</h2>
             <p class="text-zinc-600 mb-4">ISO/IEC/IEEE 29119は、ソフトウェアテストのための国際標準規格です。この規格は、テストプロセス、テスト文書、テスト技法など、ソフトウェアテストの様々な側面をカバーしています。</p>
             <p class="text-zinc-600 mb-4">この標準に準拠したテスト文書を作成することで、以下のようなメリットがあります：</p>
             <ul class="list-disc pl-6 text-zinc-600 mb-4">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="text-center mb-16">
-            <h2 class="text-2xl font-bold mb-6">今すぐ始めましょう</h2>
+            <h2 class="text-2xl font-bold mb-6 text-zinc-900">今すぐ始めましょう</h2>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 {% if user.is_authenticated %}
                     <a href="{% url 'dashboard' %}" class="px-6 py-3 bg-zinc-900 text-white rounded-md hover:bg-zinc-800 transition">ダッシュボードへ</a>

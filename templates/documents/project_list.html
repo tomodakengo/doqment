@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="flex justify-between items-center mb-8">
-    <h1 class="text-3xl font-bold">プロジェクト一覧</h1>
+    <h1 class="text-3xl font-bold text-zinc-900">プロジェクト一覧</h1>
     <a href="{% url 'project_create' %}" class="px-4 py-2 bg-zinc-900 text-white rounded-md hover:bg-zinc-800 transition">新規プロジェクト</a>
 </div>
 
@@ -13,7 +13,7 @@
         {% for project in projects %}
             <div class="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-2">{{ project.name }}</h2>
+                    <h2 class="text-xl font-semibold mb-2 text-zinc-900">{{ project.name }}</h2>
                     <p class="text-zinc-600 mb-4 line-clamp-2">{{ project.description|default:"説明なし" }}</p>
                     <div class="flex justify-between items-center text-sm text-zinc-500">
                         <span>作成日: {{ project.created_at|date:"Y年m月d日" }}</span>

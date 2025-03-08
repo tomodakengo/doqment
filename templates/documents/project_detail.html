@@ -6,15 +6,15 @@
 <div class="mb-8">
     <div class="flex justify-between items-start">
         <div>
-            <h1 class="text-3xl font-bold mb-2">{{ project.name }}</h1>
-            <p class="text-zinc-600">{{ project.description }}</p>
-            <div class="mt-2 text-sm text-zinc-500">
+            <h1 class="text-3xl font-bold mb-2 text-gray-900">{{ project.name }}</h1>
+            <p class="text-gray-600">{{ project.description }}</p>
+            <div class="mt-2 text-sm text-gray-500">
                 <span>作成日: {{ project.created_at|date:"Y年m月d日" }}</span>
                 <span class="ml-4">最終更新: {{ project.updated_at|date:"Y年m月d日" }}</span>
             </div>
         </div>
         <div class="flex space-x-3">
-            <a href="{% url 'project_update' project.id %}" class="px-4 py-2 bg-zinc-700 text-white rounded-md hover:bg-zinc-600 transition">編集</a>
+            <a href="{% url 'project_update' project.id %}" class="px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600 transition">編集</a>
             <a href="{% url 'project_delete' project.id %}" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition">削除</a>
         </div>
     </div>
@@ -24,25 +24,25 @@
     <!-- セクションテンプレート -->
     <div>
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-2xl font-semibold">セクションテンプレート</h2>
-            <a href="{% url 'section_template_create' project.id %}" class="px-3 py-1 bg-zinc-900 text-white rounded-md hover:bg-zinc-800 transition text-sm">新規テンプレート</a>
+            <h2 class="text-2xl font-semibold text-gray-900">セクションテンプレート</h2>
+            <a href="{% url 'section_template_create' project.id %}" class="px-3 py-1 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition text-sm">新規テンプレート</a>
         </div>
         
         {% if section_templates %}
             <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                <ul class="divide-y divide-zinc-200">
+                <ul class="divide-y divide-gray-200">
                     {% for template in section_templates %}
                         <li class="p-4">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="font-medium">{{ template.title }}</h3>
-                                    <p class="text-sm text-zinc-500 mb-1">{{ template.form_type_display }}</p>
+                                    <h3 class="font-medium text-gray-900">{{ template.title }}</h3>
+                                    <p class="text-sm text-gray-500 mb-1">{{ template.form_type_display }}</p>
                                     {% if template.description %}
-                                        <p class="text-sm text-zinc-600">{{ template.description }}</p>
+                                        <p class="text-sm text-gray-600">{{ template.description }}</p>
                                     {% endif %}
                                 </div>
                                 <div class="flex space-x-2">
-                                    <a href="{% url 'section_template_update' template.id %}" class="text-zinc-700 hover:text-zinc-900">編集</a>
+                                    <a href="{% url 'section_template_update' template.id %}" class="text-gray-700 hover:text-gray-900">編集</a>
                                     <a href="{% url 'section_template_delete' template.id %}" class="text-red-600 hover:text-red-800">削除</a>
                                 </div>
                             </div>
@@ -52,8 +52,8 @@
             </div>
         {% else %}
             <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                <p class="text-zinc-600 mb-4">セクションテンプレートがありません。新しいテンプレートを作成しましょう。</p>
-                <a href="{% url 'section_template_create' project.id %}" class="inline-block px-4 py-2 bg-zinc-900 text-white rounded-md hover:bg-zinc-800 transition">新規テンプレート</a>
+                <p class="text-gray-600 mb-4">セクションテンプレートがありません。新しいテンプレートを作成しましょう。</p>
+                <a href="{% url 'section_template_create' project.id %}" class="inline-block px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition">新規テンプレート</a>
             </div>
         {% endif %}
     </div>
@@ -61,26 +61,26 @@
     <!-- ドキュメント -->
     <div>
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-2xl font-semibold">ドキュメント</h2>
-            <a href="{% url 'document_create' project.id %}" class="px-3 py-1 bg-zinc-900 text-white rounded-md hover:bg-zinc-800 transition text-sm">新規ドキュメント</a>
+            <h2 class="text-2xl font-semibold text-gray-900">ドキュメント</h2>
+            <a href="{% url 'document_create' project.id %}" class="px-3 py-1 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition text-sm">新規ドキュメント</a>
         </div>
         
         {% if documents %}
             <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                <ul class="divide-y divide-zinc-200">
+                <ul class="divide-y divide-gray-200">
                     {% for document in documents %}
                         <li class="p-4">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="font-medium">{{ document.title }}</h3>
-                                    <p class="text-sm text-zinc-500 mb-1">作成日: {{ document.created_at|date:"Y年m月d日" }}</p>
+                                    <h3 class="font-medium text-gray-900">{{ document.title }}</h3>
+                                    <p class="text-sm text-gray-500 mb-1">作成日: {{ document.created_at|date:"Y年m月d日" }}</p>
                                     {% if document.description %}
-                                        <p class="text-sm text-zinc-600">{{ document.description }}</p>
+                                        <p class="text-sm text-gray-600">{{ document.description }}</p>
                                     {% endif %}
                                 </div>
                                 <div class="flex space-x-2">
-                                    <a href="{% url 'document_detail' document.id %}" class="text-zinc-700 hover:text-zinc-900">表示</a>
-                                    <a href="{% url 'document_update' document.id %}" class="text-zinc-700 hover:text-zinc-900">編集</a>
+                                    <a href="{% url 'document_detail' document.id %}" class="text-gray-700 hover:text-gray-900">表示</a>
+                                    <a href="{% url 'document_update' document.id %}" class="text-gray-700 hover:text-gray-900">編集</a>
                                     <a href="{% url 'document_delete' document.id %}" class="text-red-600 hover:text-red-800">削除</a>
                                 </div>
                             </div>
@@ -90,8 +90,8 @@
             </div>
         {% else %}
             <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                <p class="text-zinc-600 mb-4">ドキュメントがありません。新しいドキュメントを作成しましょう。</p>
-                <a href="{% url 'document_create' project.id %}" class="inline-block px-4 py-2 bg-zinc-900 text-white rounded-md hover:bg-zinc-800 transition">新規ドキュメント</a>
+                <p class="text-gray-600 mb-4">ドキュメントがありません。新しいドキュメントを作成しましょう。</p>
+                <a href="{% url 'document_create' project.id %}" class="inline-block px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition">新規ドキュメント</a>
             </div>
         {% endif %}
     </div>

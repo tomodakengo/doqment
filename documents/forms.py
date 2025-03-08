@@ -10,8 +10,8 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = ['name', 'description']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700'}),
-            'description': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700', 'rows': 4}),
+            'name': forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900'}),
+            'description': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900', 'rows': 4}),
         }
         labels = {
             'name': 'プロジェクト名',
@@ -27,12 +27,12 @@ class SectionTemplateForm(forms.ModelForm):
         model = SectionTemplate
         fields = ['title', 'description', 'form_type', 'content_guidelines', 'ai_prompt', 'order']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700'}),
-            'description': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700', 'rows': 2}),
-            'form_type': forms.Select(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700'}),
-            'content_guidelines': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700', 'rows': 4}),
-            'ai_prompt': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700', 'rows': 4}),
-            'order': forms.NumberInput(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700'}),
+            'title': forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900'}),
+            'description': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900', 'rows': 2}),
+            'form_type': forms.Select(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900'}),
+            'content_guidelines': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900', 'rows': 4}),
+            'ai_prompt': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900', 'rows': 4}),
+            'order': forms.NumberInput(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900'}),
         }
         labels = {
             'title': 'タイトル',
@@ -52,9 +52,9 @@ class DocumentForm(forms.ModelForm):
         model = Document
         fields = ['title', 'description', 'product_description']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700'}),
-            'description': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700', 'rows': 2}),
-            'product_description': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700', 'rows': 6}),
+            'title': forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900'}),
+            'description': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900', 'rows': 2}),
+            'product_description': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900', 'rows': 6}),
         }
         labels = {
             'title': 'タイトル',
@@ -71,8 +71,8 @@ class DocumentSectionForm(forms.ModelForm):
         model = DocumentSection
         fields = ['title', 'content']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700'}),
-            'content': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700', 'rows': 10}),
+            'title': forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900'}),
+            'content': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900', 'rows': 10}),
         }
         labels = {
             'title': 'タイトル',

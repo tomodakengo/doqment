@@ -8,15 +8,15 @@ class CustomUserCreationForm(UserCreationForm):
     ユーザー登録フォーム
     """
     username = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700'}),
+        widget=forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900'}),
         label='ユーザー名'
     )
     password1 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700'}),
+        widget=forms.PasswordInput(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900'}),
         label='パスワード'
     )
     password2 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700'}),
+        widget=forms.PasswordInput(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900'}),
         label='パスワード（確認）'
     )
 
@@ -30,10 +30,10 @@ class CustomAuthenticationForm(AuthenticationForm):
     ログインフォーム
     """
     username = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700'}),
+        widget=forms.TextInput(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900'}),
         label='ユーザー名'
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-700'}),
+        widget=forms.PasswordInput(attrs={'class': 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 text-gray-900'}),
         label='パスワード'
     ) 

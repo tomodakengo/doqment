@@ -4,20 +4,20 @@
 
 {% block content %}
 <div class="mb-8">
-    <h1 class="text-3xl font-bold mb-2">ダッシュボード</h1>
+    <h1 class="text-3xl font-bold mb-2 text-zinc-900">ダッシュボード</h1>
     <p class="text-zinc-600">こんにちは、{{ user.username }}さん。プロジェクトとドキュメントを管理できます。</p>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
     <div class="bg-white p-6 rounded-lg shadow-sm">
-        <h2 class="text-xl font-semibold mb-4">最近のプロジェクト</h2>
+        <h2 class="text-xl font-semibold mb-4 text-zinc-900">最近のプロジェクト</h2>
         {% if projects %}
             <ul class="divide-y divide-zinc-200">
                 {% for project in projects|slice:":5" %}
                     <li class="py-3">
                         <a href="{% url 'project_detail' project.id %}" class="flex justify-between items-center hover:bg-zinc-50 p-2 rounded">
                             <div>
-                                <h3 class="font-medium">{{ project.name }}</h3>
+                                <h3 class="font-medium text-zinc-900">{{ project.name }}</h3>
                                 <p class="text-sm text-zinc-500">{{ project.created_at|date:"Y年m月d日" }}</p>
                             </div>
                             <span class="text-zinc-400">→</span>
@@ -39,19 +39,19 @@
     </div>
 
     <div class="bg-white p-6 rounded-lg shadow-sm">
-        <h2 class="text-xl font-semibold mb-4">クイックアクション</h2>
+        <h2 class="text-xl font-semibold mb-4 text-zinc-900">クイックアクション</h2>
         <div class="space-y-4">
             <a href="{% url 'project_create' %}" class="flex items-center p-3 bg-zinc-100 hover:bg-zinc-200 rounded-md transition">
-                <span class="mr-3 text-xl">+</span>
+                <span class="mr-3 text-xl text-zinc-900">+</span>
                 <div>
-                    <h3 class="font-medium">新規プロジェクト</h3>
+                    <h3 class="font-medium text-zinc-900">新規プロジェクト</h3>
                     <p class="text-sm text-zinc-500">新しいプロジェクトを作成します</p>
                 </div>
             </a>
             <a href="{% url 'project_list' %}" class="flex items-center p-3 bg-zinc-100 hover:bg-zinc-200 rounded-md transition">
-                <span class="mr-3 text-xl">📁</span>
+                <span class="mr-3 text-xl text-zinc-900">📁</span>
                 <div>
-                    <h3 class="font-medium">プロジェクト一覧</h3>
+                    <h3 class="font-medium text-zinc-900">プロジェクト一覧</h3>
                     <p class="text-sm text-zinc-500">すべてのプロジェクトを表示します</p>
                 </div>
             </a>
@@ -60,18 +60,18 @@
 </div>
 
 <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
-    <h2 class="text-xl font-semibold mb-4">使い方ガイド</h2>
+    <h2 class="text-xl font-semibold mb-4 text-zinc-900">使い方ガイド</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="border border-zinc-200 rounded-md p-4">
-            <h3 class="font-medium mb-2">1. プロジェクトを作成</h3>
+            <h3 class="font-medium mb-2 text-zinc-900">1. プロジェクトを作成</h3>
             <p class="text-sm text-zinc-600">新しいプロジェクトを作成し、名前と説明を設定します。</p>
         </div>
         <div class="border border-zinc-200 rounded-md p-4">
-            <h3 class="font-medium mb-2">2. セクションテンプレートを設定</h3>
+            <h3 class="font-medium mb-2 text-zinc-900">2. セクションテンプレートを設定</h3>
             <p class="text-sm text-zinc-600">プロジェクトにセクションテンプレートを追加し、カスタマイズします。</p>
         </div>
         <div class="border border-zinc-200 rounded-md p-4">
-            <h3 class="font-medium mb-2">3. ドキュメントを生成</h3>
+            <h3 class="font-medium mb-2 text-zinc-900">3. ドキュメントを生成</h3>
             <p class="text-sm text-zinc-600">製品説明を入力し、AIによるテスト文書を自動生成します。</p>
         </div>
     </div>

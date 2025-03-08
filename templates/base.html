@@ -13,19 +13,19 @@
     </style>
     {% block extra_css %}{% endblock %}
 </head>
-<body class="bg-zinc-50 text-zinc-900 min-h-screen flex flex-col">
-    <header class="bg-zinc-900 text-white">
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+    <header class="bg-gray-900 text-white">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="{% url 'home' %}" class="text-2xl font-bold">Doqment</a>
+            <a href="{% url 'home' %}" class="text-2xl font-bold text-white">Doqment</a>
             <nav>
                 <ul class="flex space-x-6">
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'dashboard' %}" class="hover:text-zinc-300">ダッシュボード</a></li>
-                        <li><a href="{% url 'project_list' %}" class="hover:text-zinc-300">プロジェクト</a></li>
-                        <li><a href="{% url 'logout' %}" class="hover:text-zinc-300">ログアウト</a></li>
+                        <li><a href="{% url 'dashboard' %}" class="text-white hover:text-gray-300">ダッシュボード</a></li>
+                        <li><a href="{% url 'project_list' %}" class="text-white hover:text-gray-300">プロジェクト</a></li>
+                        <li><a href="{% url 'logout' %}" class="text-white hover:text-gray-300">ログアウト</a></li>
                     {% else %}
-                        <li><a href="{% url 'login' %}" class="hover:text-zinc-300">ログイン</a></li>
-                        <li><a href="{% url 'signup' %}" class="hover:text-zinc-300">登録</a></li>
+                        <li><a href="{% url 'login' %}" class="text-white hover:text-gray-300">ログイン</a></li>
+                        <li><a href="{% url 'signup' %}" class="text-white hover:text-gray-300">登録</a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -46,7 +46,7 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="bg-zinc-800 text-zinc-400 py-8">
+    <footer class="bg-gray-800 text-gray-400 py-8">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between">
                 <div class="mb-4 md:mb-0">
@@ -56,18 +56,18 @@
                 <div>
                     <h4 class="text-white text-md font-semibold mb-2">リンク</h4>
                     <ul class="space-y-1">
-                        <li><a href="{% url 'home' %}" class="hover:text-white">ホーム</a></li>
+                        <li><a href="{% url 'home' %}" class="text-gray-400 hover:text-white">ホーム</a></li>
                         {% if user.is_authenticated %}
-                            <li><a href="{% url 'dashboard' %}" class="hover:text-white">ダッシュボード</a></li>
-                            <li><a href="{% url 'project_list' %}" class="hover:text-white">プロジェクト</a></li>
+                            <li><a href="{% url 'dashboard' %}" class="text-gray-400 hover:text-white">ダッシュボード</a></li>
+                            <li><a href="{% url 'project_list' %}" class="text-gray-400 hover:text-white">プロジェクト</a></li>
                         {% else %}
-                            <li><a href="{% url 'login' %}" class="hover:text-white">ログイン</a></li>
-                            <li><a href="{% url 'signup' %}" class="hover:text-white">登録</a></li>
+                            <li><a href="{% url 'login' %}" class="text-gray-400 hover:text-white">ログイン</a></li>
+                            <li><a href="{% url 'signup' %}" class="text-gray-400 hover:text-white">登録</a></li>
                         {% endif %}
                     </ul>
                 </div>
             </div>
-            <div class="mt-8 pt-4 border-t border-zinc-700 text-center">
+            <div class="mt-8 pt-4 border-t border-gray-700 text-center">
                 <p>&copy; {% now "Y" %} Doqment. All rights reserved.</p>
             </div>
         </div>
