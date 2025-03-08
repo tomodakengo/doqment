@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}{{ project.name }} - Doqment{% endblock %}
 
@@ -149,5 +150,5 @@
 
 {% block extra_js %}
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-<script src="/static/js/section_templates.js"></script>
+<script src="{% static 'js/section_templates.js' %}"></script>
 {% endblock %} 
