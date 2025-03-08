@@ -65,6 +65,50 @@ ISO/IEC/IEEE 29119標準に基づいたテスト仕様書とテスト計画を�
 4. 製品説明を入力してテスト仕様書を生成する
 5. 必要に応じて生成された文書を編集する
 
+## テスト
+
+Doqmentプロジェクトには包括的なテストスイートが含まれています。テストは以下のように実行できます：
+
+### 全てのテストを実行
+
+```bash
+python manage.py test
+```
+
+### 特定のアプリケーションのテストを実行
+
+```bash
+python manage.py test accounts
+python manage.py test documents
+python manage.py test core
+```
+
+### 特定のテストクラスを実行
+
+```bash
+python manage.py test documents.tests.test_models.ProjectModelTest
+```
+
+### カバレッジレポートの生成
+
+```bash
+pip install coverage
+coverage run --source='.' manage.py test
+coverage report
+```
+
+より詳細なHTMLレポートを生成するには：
+
+```bash
+coverage html
+```
+
+その後、`htmlcov/index.html`をブラウザで開いてレポートを確認できます。
+
+### CI/CD
+
+このプロジェクトはGitHub Actionsを使用して継続的インテグレーションを実装しています。プッシュやプルリクエストが行われると、自動的にテストが実行されます。GitHub Actionsの設定は`.github/workflows/django-tests.yml`で確認できます。
+
 ## ライセンス
 
 このプロジェクトはMITライセンスの下で公開されています。 
