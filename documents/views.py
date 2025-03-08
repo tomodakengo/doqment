@@ -161,7 +161,7 @@ def add_section_template(request, project_pk):
     """
     セクションテンプレートを動的に追加するAJAXビュー
     """
-    if request.method == 'POST' and request.is_ajax():
+    if request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         project = get_object_or_404(Project, pk=project_pk, owner=request.user)
         
         # 最大の順序を取得
@@ -193,7 +193,7 @@ def update_section_template_order(request):
     """
     セクションテンプレートの順序を更新するAJAXビュー
     """
-    if request.method == 'POST' and request.is_ajax():
+    if request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         template_ids = request.POST.getlist('template_ids[]')
         
         for i, template_id in enumerate(template_ids):
