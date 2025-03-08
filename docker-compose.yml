@@ -12,6 +12,7 @@ services:
       - DEBUG=1
       - SECRET_KEY=dev_secret_key
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - OPENAI_API_KEY=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
     depends_on:
       - db
   

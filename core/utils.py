@@ -4,7 +4,7 @@ from django.conf import settings
 from .models import OpenAIRequest
 
 # OpenAI APIキーを設定
-openai.api_key = settings.OPENAI_API_KEY
+openai.api_key = os.environ.get('OPENAI_API_KEY')
 
 
 def generate_test_document(product_description, section_templates):
@@ -27,23 +27,29 @@ def generate_test_document(product_description, section_templates):
 {product_description}
 
 セクション: {template.title}
+説明: {template.description}
 ガイドライン: {template.content_guidelines}
 
 {template.ai_prompt if template.ai_prompt else '以下のセクションの内容を生成してください。'}
 
-ISO/IEC/IEEE 29119標準に準拠したテスト文書を生成してください。
+以下の点に注意して、ISO/IEC/IEEE 29119標準に準拠した高品質なテスト文書を生成してください：
+1. 具体的かつ明確な内容を記述してください
+2. テスト対象の製品特性を考慮してください
+3. 実用的で実施可能な内容にしてください
+4. 論理的な構成と適切な専門用語を使用してください
+5. 必要に応じて箇条書きや表形式を使用して読みやすくしてください
         """
         
         try:
             # OpenAI APIを呼び出し
-            response = openai.chat.completions.create(
+            response = openai.ChatCompletion.create(
                 model="gpt-4",
                 messages=[
-                    {"role": "system", "content": "あなたはISO/IEC/IEEE 29119標準に基づいたテスト文書を生成する専門家です。"},
+                    {"role": "system", "content": "あなたはISO/IEC/IEEE 29119標準に基づいたテスト文書を生成する専門家です。テスト計画、テスト仕様書、テスト結果報告書などの文書を作成するための豊富な知識と経験を持っています。"},
                     {"role": "user", "content": prompt}
                 ],
-                max_tokens=1000,
-                temperature=0.7,
+                max_tokens=1500,
+                temperature=0.5,
             )
             
             # レスポンスからコンテンツを取得
