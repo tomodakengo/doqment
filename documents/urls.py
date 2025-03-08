@@ -3,7 +3,7 @@ from .views import (
     ProjectListView, ProjectDetailView, ProjectCreateView, ProjectUpdateView, ProjectDeleteView,
     SectionTemplateCreateView, SectionTemplateUpdateView, SectionTemplateDeleteView,
     DocumentCreateView, DocumentDetailView, DocumentUpdateView, DocumentDeleteView,
-    DocumentSectionUpdateView, generate_document_sections,
+    DocumentSectionUpdateView, generate_document_sections, document_generation_status, get_generation_status,
     add_section_template, update_section_template_order
 )
 
@@ -28,6 +28,8 @@ urlpatterns = [
     path('documents/<int:pk>/update/', DocumentUpdateView.as_view(), name='document_update'),
     path('documents/<int:pk>/delete/', DocumentDeleteView.as_view(), name='document_delete'),
     path('documents/<int:pk>/generate/', generate_document_sections, name='generate_document_sections'),
+    path('documents/<int:pk>/generation-status/<int:task_id>/', document_generation_status, name='document_generation_status'),
+    path('api/generation-status/<int:task_id>/', get_generation_status, name='get_generation_status'),
     
     # ドキュメントセクション関連のURL
     path('sections/<int:pk>/update/', DocumentSectionUpdateView.as_view(), name='document_section_update'),

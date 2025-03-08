@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy, reverse
 from django.http import JsonResponse
 from django.contrib import messages
-from .models import Project, SectionTemplate, Document, DocumentSection
+from .models import Project, SectionTemplate, Document, DocumentSection, GenerationTask
 from .forms import ProjectForm, SectionTemplateForm, DocumentForm, DocumentSectionForm
 from .default_templates import DEFAULT_TEMPLATES
 from core.utils import generate_test_document
@@ -288,29 +288,61 @@ def generate_document_sections(request, pk):
     document = get_object_or_404(Document, pk=pk, project__owner=request.user)
     
     if request.method == 'POST':
-        # 既存のセクションを削除
-        document.sections.all().delete()
+        # 新しい生成タスクを作成
+        task = GenerationTask.objects.create(
+            document=document,
+            status='pending',
+            progress=0
+        )
         
-        # プロジェクトのセクションテンプレートを取得
-        section_templates = document.project.section_templates.all()
+        # Celeryタスクを開始
+        from .tasks import generate_document_sections_task
+        celery_task = generate_document_sections_task.delay(document.id, task.id)
         
-        # OpenAI APIを使用してセクションを生成
-        sections_content = generate_test_document(document.product_description, section_templates)
+        # タスクIDを保存
+        task.task_id = celery_task.id
+        task.save()
         
-        # 生成されたセクションを保存
-        for template in section_templates:
-            content = sections_content.get(template.id, '')
-            DocumentSection.objects.create(
-                document=document,
-                template=template,
-                title=template.title,
-                content=content,
-                order=template.order
-            )
-        
-        return redirect('document_detail', pk=document.pk)
+        # 進捗状況ページにリダイレクト
+        return redirect('document_generation_status', pk=document.pk, task_id=task.id)
     
     return render(request, 'documents/generate_confirm.html', {'document': document})
+
+
+@login_required
+def document_generation_status(request, pk, task_id):
+    """
+    ドキュメント生成の進捗状況を表示するビュー
+    """
+    document = get_object_or_404(Document, pk=pk, project__owner=request.user)
+    task = get_object_or_404(GenerationTask, id=task_id, document=document)
+    
+    return render(request, 'documents/generation_status.html', {
+        'document': document,
+        'task': task
+    })
+
+
+@login_required
+def get_generation_status(request, task_id):
+    """
+    生成タスクの進捗状況を取得するAPIビュー
+    """
+    task = get_object_or_404(GenerationTask, id=task_id, document__project__owner=request.user)
+    
+    data = {
+        'status': task.status,
+        'progress': task.progress,
+        'total_sections': task.total_sections,
+        'completed_sections': task.completed_sections,
+        'error_message': task.error_message
+    }
+    
+    # タスクが完了している場合はドキュメント詳細ページのURLを含める
+    if task.status == 'completed':
+        data['redirect_url'] = reverse('document_detail', kwargs={'pk': task.document.id})
+    
+    return JsonResponse(data)
 
 
 class DocumentSectionUpdateView(LoginRequiredMixin, UpdateView):

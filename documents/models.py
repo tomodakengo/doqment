@@ -74,3 +74,25 @@ class DocumentSection(models.Model):
 
     def __str__(self):
         return f"{self.document.title} - {self.title}"
+
+
+class GenerationTask(models.Model):
+    STATUS_CHOICES = [
+        ('pending', '待機中'),
+        ('processing', '処理中'),
+        ('completed', '完了'),
+        ('failed', '失敗'),
+    ]
+    
+    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='generation_tasks')
+    task_id = models.CharField(max_length=255, blank=True, null=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    progress = models.IntegerField(default=0)  # 0-100の進捗率
+    total_sections = models.IntegerField(default=0)
+    completed_sections = models.IntegerField(default=0)
+    error_message = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f"Generation Task for {self.document.title} ({self.status})"
