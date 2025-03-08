@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.id %}{{ form.instance.name }} 編集{% else %}新規プロジェクト{% endif %} - Doqment{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6">{% if form.instance.id %}プロジェクト編集{% else %}新規プロジェクト{% endif %}</h1>
+    
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="mb-4">
+                <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-zinc-700 mb-1">{{ form.name.label }}</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <p class="text-red-600 text-sm mt-1">{{ form.name.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="mb-6">
+                <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-zinc-700 mb-1">{{ form.description.label }}</label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                    <p class="text-red-600 text-sm mt-1">{{ form.description.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="flex justify-between">
+                <button type="submit" class="px-4 py-2 bg-zinc-900 text-white rounded-md hover:bg-zinc-800 transition">保存</button>
+                <a href="{% if form.instance.id %}{% url 'project_detail' form.instance.id %}{% else %}{% url 'project_list' %}{% endif %}" class="px-4 py-2 bg-zinc-200 text-zinc-800 rounded-md hover:bg-zinc-300 transition">キャンセル</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 
