@@ -4,14 +4,14 @@
 
 {% block content %}
 <div class="max-w-2xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6 text-zinc-900">{% if form.instance.id %}ドキュメント編集{% else %}新規ドキュメント{% endif %}</h1>
+    <h1 class="text-3xl font-bold mb-6 text-gray-900">{% if form.instance.id %}ドキュメント編集{% else %}新規ドキュメント{% endif %}</h1>
     
     <div class="bg-white p-6 rounded-lg shadow-sm">
         <form method="post">
             {% csrf_token %}
             
             <div class="mb-4">
-                <label for="{{ form.title.id_for_label }}" class="block text-sm font-medium text-zinc-700 mb-1">{{ form.title.label }}</label>
+                <label for="{{ form.title.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ form.title.label }}</label>
                 {{ form.title }}
                 {% if form.title.errors %}
                     <p class="text-red-600 text-sm mt-1">{{ form.title.errors.0 }}</p>
@@ -19,7 +19,7 @@
             </div>
             
             <div class="mb-4">
-                <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-zinc-700 mb-1">{{ form.description.label }}</label>
+                <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ form.description.label }}</label>
                 {{ form.description }}
                 {% if form.description.errors %}
                     <p class="text-red-600 text-sm mt-1">{{ form.description.errors.0 }}</p>
@@ -27,7 +27,7 @@
             </div>
             
             <div class="mb-6">
-                <label for="{{ form.product_description.id_for_label }}" class="block text-sm font-medium text-zinc-700 mb-1">{{ form.product_description.label }}</label>
+                <label for="{{ form.product_description.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ form.product_description.label }}</label>
                 {{ form.product_description }}
                 {% if form.product_description.errors %}
                     <p class="text-red-600 text-sm mt-1">{{ form.product_description.errors.0 }}</p>
@@ -35,8 +35,8 @@
             </div>
             
             <div class="flex justify-between">
-                <button type="submit" class="px-4 py-2 bg-zinc-900 text-white rounded-md hover:bg-zinc-800 transition">保存</button>
-                <a href="{% if form.instance.id %}{% url 'document_detail' form.instance.id %}{% else %}{% url 'project_detail' project.id %}{% endif %}" class="px-4 py-2 bg-zinc-200 text-zinc-800 rounded-md hover:bg-zinc-300 transition">キャンセル</a>
+                <button type="submit" class="px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition">保存</button>
+                <a href="{% if form.instance.id %}{% url 'document_detail' form.instance.id %}{% else %}{% url 'project_detail' project.id %}{% endif %}" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition">キャンセル</a>
             </div>
         </form>
     </div>

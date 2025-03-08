@@ -4,17 +4,17 @@
 
 {% block content %}
 <div class="max-w-md mx-auto">
-    <h1 class="text-3xl font-bold mb-6 text-zinc-900">セクションテンプレート削除</h1>
+    <h1 class="text-3xl font-bold mb-6 text-gray-900">セクションテンプレート削除</h1>
     
     <div class="bg-white p-6 rounded-lg shadow-sm">
-        <p class="mb-6 text-zinc-700">セクションテンプレート「{{ template.title }}」を削除してもよろしいですか？</p>
+        <p class="mb-6 text-gray-700">セクションテンプレート「{{ template.title }}」を削除してもよろしいですか？</p>
         <p class="mb-6 text-red-600 font-medium">この操作は取り消せません。</p>
         
         <form method="post">
             {% csrf_token %}
             <div class="flex justify-between">
                 <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition">削除</button>
-                <a href="{% url 'project_detail' template.project.id %}" class="px-4 py-2 bg-zinc-200 text-zinc-800 rounded-md hover:bg-zinc-300 transition">キャンセル</a>
+                <a href="{% url 'project_detail' template.project.id %}" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition">キャンセル</a>
             </div>
         </form>
     </div>

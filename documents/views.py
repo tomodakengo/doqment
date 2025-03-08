@@ -4,8 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.http import JsonResponse
+from django.contrib import messages
 from .models import Project, SectionTemplate, Document, DocumentSection
 from .forms import ProjectForm, SectionTemplateForm, DocumentForm, DocumentSectionForm
+from .default_templates import DEFAULT_TEMPLATES
 from core.utils import generate_test_document
 
 
@@ -50,7 +52,25 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        
+        # デフォルトのセクションテンプレートを追加
+        template_type = form.instance.template_type
+        if template_type != 'custom' and template_type in DEFAULT_TEMPLATES:
+            template_data = DEFAULT_TEMPLATES[template_type]
+            for section_data in template_data['sections']:
+                SectionTemplate.objects.create(
+                    project=self.object,
+                    title=section_data['title'],
+                    description=section_data['description'],
+                    form_type=section_data['form_type'],
+                    content_guidelines=section_data['content_guidelines'],
+                    ai_prompt=section_data['ai_prompt'],
+                    order=section_data['order']
+                )
+            messages.success(self.request, f"{template_data['name']}のデフォルトセクションを追加しました。")
+        
+        return response
 
 
 class ProjectUpdateView(LoginRequiredMixin, UpdateView):
@@ -134,6 +154,56 @@ class SectionTemplateDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('project_detail', kwargs={'pk': self.object.project.pk})
+
+
+@login_required
+def add_section_template(request, project_pk):
+    """
+    セクションテンプレートを動的に追加するAJAXビュー
+    """
+    if request.method == 'POST' and request.is_ajax():
+        project = get_object_or_404(Project, pk=project_pk, owner=request.user)
+        
+        # 最大の順序を取得
+        max_order = project.section_templates.aggregate(models.Max('order'))['order__max'] or 0
+        
+        # 新しいセクションテンプレートを作成
+        template = SectionTemplate.objects.create(
+            project=project,
+            title=request.POST.get('title', '新しいセクション'),
+            description=request.POST.get('description', ''),
+            form_type=request.POST.get('form_type', 'textarea'),
+            content_guidelines=request.POST.get('content_guidelines', ''),
+            ai_prompt=request.POST.get('ai_prompt', ''),
+            order=max_order + 1
+        )
+        
+        return JsonResponse({
+            'success': True,
+            'template_id': template.id,
+            'template_title': template.title,
+            'template_order': template.order
+        })
+    
+    return JsonResponse({'success': False, 'error': '不正なリクエストです。'})
+
+
+@login_required
+def update_section_template_order(request):
+    """
+    セクションテンプレートの順序を更新するAJAXビュー
+    """
+    if request.method == 'POST' and request.is_ajax():
+        template_ids = request.POST.getlist('template_ids[]')
+        
+        for i, template_id in enumerate(template_ids):
+            template = get_object_or_404(SectionTemplate, pk=template_id, project__owner=request.user)
+            template.order = i + 1
+            template.save()
+        
+        return JsonResponse({'success': True})
+    
+    return JsonResponse({'success': False, 'error': '不正なリクエストです。'})
 
 
 class DocumentCreateView(LoginRequiredMixin, CreateView):

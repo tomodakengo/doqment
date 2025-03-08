@@ -3,7 +3,8 @@ from .views import (
     ProjectListView, ProjectDetailView, ProjectCreateView, ProjectUpdateView, ProjectDeleteView,
     SectionTemplateCreateView, SectionTemplateUpdateView, SectionTemplateDeleteView,
     DocumentCreateView, DocumentDetailView, DocumentUpdateView, DocumentDeleteView,
-    DocumentSectionUpdateView, generate_document_sections
+    DocumentSectionUpdateView, generate_document_sections,
+    add_section_template, update_section_template_order
 )
 
 urlpatterns = [
@@ -18,6 +19,8 @@ urlpatterns = [
     path('projects/<int:project_pk>/templates/create/', SectionTemplateCreateView.as_view(), name='section_template_create'),
     path('templates/<int:pk>/update/', SectionTemplateUpdateView.as_view(), name='section_template_update'),
     path('templates/<int:pk>/delete/', SectionTemplateDeleteView.as_view(), name='section_template_delete'),
+    path('projects/<int:project_pk>/templates/add/', add_section_template, name='add_section_template'),
+    path('templates/update-order/', update_section_template_order, name='update_section_template_order'),
     
     # ドキュメント関連のURL
     path('projects/<int:project_pk>/documents/create/', DocumentCreateView.as_view(), name='document_create'),

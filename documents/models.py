@@ -3,9 +3,17 @@ from django.contrib.auth.models import User
 
 
 class Project(models.Model):
+    TEMPLATE_CHOICES = [
+        ('test_plan', 'テスト計画書'),
+        ('test_specification', 'テスト仕様書'),
+        ('test_report', 'テスト結果報告書'),
+        ('custom', 'カスタム'),
+    ]
+    
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects')
+    template_type = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default='test_specification')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

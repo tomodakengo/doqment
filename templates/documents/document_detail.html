@@ -6,17 +6,17 @@
 <div class="mb-8">
     <div class="flex justify-between items-start">
         <div>
-            <h1 class="text-3xl font-bold mb-2 text-zinc-900">{{ document.title }}</h1>
-            <p class="text-zinc-600">{{ document.description }}</p>
-            <div class="mt-2 text-sm text-zinc-500">
-                <span>プロジェクト: <a href="{% url 'project_detail' document.project.id %}" class="text-zinc-700 hover:text-zinc-900">{{ document.project.name }}</a></span>
+            <h1 class="text-3xl font-bold mb-2 text-gray-900">{{ document.title }}</h1>
+            <p class="text-gray-600">{{ document.description }}</p>
+            <div class="mt-2 text-sm text-gray-500">
+                <span>プロジェクト: <a href="{% url 'project_detail' document.project.id %}" class="text-gray-700 hover:text-gray-900">{{ document.project.name }}</a></span>
                 <span class="ml-4">作成日: {{ document.created_at|date:"Y年m月d日" }}</span>
                 <span class="ml-4">最終更新: {{ document.updated_at|date:"Y年m月d日" }}</span>
             </div>
         </div>
         <div class="flex space-x-3">
-            <a href="{% url 'generate_document_sections' document.id %}" class="px-4 py-2 bg-zinc-900 text-white rounded-md hover:bg-zinc-800 transition">生成</a>
-            <a href="{% url 'document_update' document.id %}" class="px-4 py-2 bg-zinc-700 text-white rounded-md hover:bg-zinc-600 transition">編集</a>
+            <a href="{% url 'generate_document_sections' document.id %}" class="px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition">生成</a>
+            <a href="{% url 'document_update' document.id %}" class="px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600 transition">編集</a>
             <a href="{% url 'document_delete' document.id %}" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition">削除</a>
         </div>
     </div>
@@ -24,32 +24,32 @@
 
 <div class="mb-8">
     <div class="bg-white p-6 rounded-lg shadow-sm">
-        <h2 class="text-xl font-semibold mb-4 text-zinc-900">製品説明</h2>
-        <div class="p-4 bg-zinc-50 rounded-md">
-            <p class="text-zinc-700 whitespace-pre-line">{{ document.product_description }}</p>
+        <h2 class="text-xl font-semibold mb-4 text-gray-900">製品説明</h2>
+        <div class="p-4 bg-gray-50 rounded-md">
+            <p class="text-gray-700 whitespace-pre-line">{{ document.product_description }}</p>
         </div>
     </div>
 </div>
 
 {% if sections %}
-    <h2 class="text-2xl font-semibold mb-4 text-zinc-900">セクション</h2>
+    <h2 class="text-2xl font-semibold mb-4 text-gray-900">セクション</h2>
     <div class="space-y-6">
         {% for section in sections %}
             <div class="bg-white p-6 rounded-lg shadow-sm">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-semibold text-zinc-900">{{ section.title }}</h3>
-                    <a href="{% url 'document_section_update' section.id %}" class="text-zinc-700 hover:text-zinc-900">編集</a>
+                    <h3 class="text-lg font-semibold text-gray-900">{{ section.title }}</h3>
+                    <a href="{% url 'document_section_update' section.id %}" class="text-gray-700 hover:text-gray-900">編集</a>
                 </div>
-                <div class="p-4 bg-zinc-50 rounded-md">
-                    <div class="text-zinc-700 whitespace-pre-line">{{ section.content }}</div>
+                <div class="p-4 bg-gray-50 rounded-md">
+                    <div class="text-gray-700 whitespace-pre-line">{{ section.content }}</div>
                 </div>
             </div>
         {% endfor %}
     </div>
 {% else %}
     <div class="bg-white p-8 rounded-lg shadow-sm text-center">
-        <p class="text-zinc-600 mb-4">セクションがありません。「生成」ボタンをクリックして、AIによるテスト文書を生成しましょう。</p>
-        <a href="{% url 'generate_document_sections' document.id %}" class="inline-block px-4 py-2 bg-zinc-900 text-white rounded-md hover:bg-zinc-800 transition">生成</a>
+        <p class="text-gray-600 mb-4">セクションがありません。「生成」ボタンをクリックして、AIによるテスト文書を生成しましょう。</p>
+        <a href="{% url 'generate_document_sections' document.id %}" class="inline-block px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition">生成</a>
     </div>
 {% endif %}
 {% endblock %} 
